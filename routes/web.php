@@ -29,6 +29,9 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('{page}', ['as' => 'page.index', 'uses' => 'PageController@index']);
 });
 
-Route::post('/fuelMonitoring', 'fuelMonitoringController@store')->name('fuelMonitoring');
+// Route::post('/fuelMonitoring', 'fuelMonitoringController@store')->name('fuelMonitoring');
+Route::post('/status_log', 'fuelMonitoringController@updateStatusStatic')->name('status_log');
+Route::post('/fillLevel_log', 'fuelMonitoringController@updateFillevelStatic')->name('fillLevel_log');
+Route::post('/create', 'fuelMonitoringController@store')->name('create');
 
-
+// Route::get('/show', 'fuelMonitoringController@show');

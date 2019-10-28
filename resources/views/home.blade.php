@@ -1,5 +1,5 @@
 @extends('layouts.app', [
-    'namePage' => 'Dashboard',
+    'namePage' => 'log',
     'class' => 'login-page sidebar-mini ',
     'activePage' => 'home',
     'backgroundImage' => asset('now') . "/img/bg14.jpg",
@@ -89,50 +89,7 @@
       </div>
       
     </div>
-    <div class="row">
-      <div class="col-md-12">
-        <div class="card">
-          <div class="card-header">
-          <a class="btn btn-primary btn-round text-white pull-right" href="{{ route('sensor') }}">{{ __('Add Fuel Monitoring Sensor') }}</a>
-            <h4 class="card-title">Fuel Sensor</h4>
-            <div class="col-12 mt-2">
-                                        </div>
-          </div>
-          <div class="card-body">
-            <div class="toolbar">
-              <!--        Here you can write extra buttons/actions for the toolbar              -->
-            </div>
-            <table id="datatable" class="table table-striped table-bordered" cellspacing="0" width="100%">
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Status</th>
-                  <th>Level</th>
-                  <th>Logs</th>
-                </tr>
-              </thead>
-              
-              <tbody>
-                  <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td class="MuiTableCell-root SmartBoxesTable-tableCell-1257 MuiTableCell-body">
-                    <a href="{{ route('log') }}" class="btn btn-primary btn-round">See Logs</a>
-                      </a>
-                    </td>
-                  </tr>
-                  
-                  
-              </tbody>
-            </table>
-          </div>
-          <!-- end content-->
-        </div>
-        <!--  end card  -->
-      </div>
-      <!-- end col-md-12 -->
-    </div>
+    
   </div>
 @endsection
 
@@ -143,5 +100,7 @@
       demo.initDashboardPageCharts();
 
     });
+
+    
   </script>
 @endpush

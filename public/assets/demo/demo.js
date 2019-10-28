@@ -347,7 +347,7 @@ demo = {
                     fill: true,
                     backgroundColor: gradientFill,
                     borderWidth: 2,
-                    data: [542, 480, 430, 550, 530, 453, 380, 434, 568, 610, 700, 630]
+                    data: ['542, 480, 430, 550, 530, 453, 380, 434, 568, 610, 700, 630']
                 }]
             },
             options: gradientChartOptionsConfiguration
@@ -410,6 +410,7 @@ demo = {
                     fill: true,
                     borderWidth: 1,
                     data: [80, 99, 86, 96, 123, 85, 100, 75, 88, 90, 123, 155]
+                    
                 }]
             },
             options: {

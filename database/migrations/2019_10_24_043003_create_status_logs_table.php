@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFMS2Table extends Migration
+class CreateStatusLogsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateFMS2Table extends Migration
      */
     public function up()
     {
-        Schema::create('_f_m_s2', function (Blueprint $table) {
+        Schema::create('status_logs', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->boolean('status');
+            $table->bigInteger('fms_id')->unsigned();
             $table->timestamps();
-            $table->string('name');
-            $table->float('level');
+            $table->foreign('fms_id')->references('id')->on('fms')->onDelete('cascade');
         });
     }
 
@@ -28,6 +29,6 @@ class CreateFMS2Table extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('_f_m_s2');
+        Schema::dropIfExists('status_logs');
     }
 }

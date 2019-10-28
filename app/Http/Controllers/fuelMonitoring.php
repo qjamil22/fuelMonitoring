@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\fuelMonitoring;
+use App\fms;
+use App\fillLevel_logs;
+use App\status_logs;
 
 class fuelMonitoringController extends Controller
 {
@@ -12,9 +14,9 @@ class fuelMonitoringController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(User $model)
     {
-        //
+        return view('users.index', ['users' => $model->paginate(15)]);
     }
 
     /**
@@ -24,7 +26,8 @@ class fuelMonitoringController extends Controller
      */
     public function create()
     {
-        //
+        $fms = fms::lists(['name']);
+        return view('home', compact('name', 'fms'));
     }
 
     /**
@@ -34,17 +37,24 @@ class fuelMonitoringController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request){
-      //   dd($request);
-        $_f_m_s = new fuelMonitoring();
+        // dd($request);
+        $fms = new fms();
  
-        $_f_m_s->name = $request->name;
-        // $f_m_s->status = $request->status;
-        // $f_m_s->level = $request->level;
-        $_f_m_s->timestamps = false;
+        $fms->name = $request->name;
+        $fms->timestamps = false;
  
-        $_f_m_s->save();
+        $fms->save();
+
+        $json = [
+            'message' => 'Saved Successfully',
+        ];
+
+        //return view('home');
+        return json_encode($json);
+
+       
         
-        return redirect('fuelMonitoring');
+        //return redirect('log');
  
     }
 
@@ -56,7 +66,13 @@ class fuelMonitoringController extends Controller
      */
     public function show($id)
     {
-        //
+            //Fetching all the posts from the database
+            // $posts = Post::all();
+            return view('home',['_f_m_s'=> $fms]);
+        // $fms = new fms();
+        //     // $user = Auth::user();
+        // $fms = fms::where('status', $fms->status)->where('fuelMonitoring',"fms")->get();
+        // return view('fms.home')->with('fms',$fms)->with('fms', $fms);
     }
 
     /**
@@ -77,9 +93,77 @@ class fuelMonitoringController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function updateFillevelStatic(Request $request)
     {
-        //
+        $fms = fms::where('id',$request->id)->first();
+        $fms->fillLevel = $request->fillLevel;
+        $fms->timestamps = false;
+        $fms->save();
+
+        if($fms->fillLevel_log_id == null) {    
+            $log = new fillLevel_logs;
+            $log->fillLevel = $request->fillLevel;
+            $log->fms_id = $fms->id;
+            $log->save();
+
+            $fms->fillLevel_log_id = $log->id;
+        }
+        else {
+
+            $prevLog = fillLevel_logs::where('id',$fms->fillLevel_log_id)->first();
+            $prevLog->touch();
+
+            $log = new fillLevel_logs;
+            $log->fillLevel = $request->fillLevel;
+            $log->fms_id = $fms->id;
+            $log->save();
+
+            $fms->fillLevel_log_id = $log->id;
+        }
+
+        $json = [
+            'message' => 'Saved Successfully',
+        ];
+
+        //return view('home');
+        return json_encode($json);
+    }
+
+    public function updateStatusStatic(Request $request)
+    {
+      //  dd($request);
+        $fms = fms::where('id',$request->id)->first();
+        $fms->status = $request->status;
+        $fms->timestamps = false;
+        $fms->save();
+
+        if($fms->status_log_id == null) {    
+            $log = new status_logs;
+            $log->status = $request->status;
+            $log->fms_id = $fms->id;
+            $log->save();
+
+            $fms->status_log_id = $log->id;
+        }
+        else {
+
+            $prevLog = status_logs::where('id',$fms->status_log_id)->first();
+            $prevLog->touch();
+
+            $log = new status_logs;
+            $log->status = $request->status;
+            $log->fms_id = $fms->id;
+            $log->save();
+
+            $fms->status_log_id = $log->id;
+        }
+
+        $json = [
+            'message' => 'Saved Successfully',
+        ];
+
+        //return view('home');
+        return json_encode($json);
     }
 
     /**

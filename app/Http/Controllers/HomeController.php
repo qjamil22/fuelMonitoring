@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\fms;
+use App\fillLevel_logs;
+use App\status_logs;
 
 class HomeController extends Controller
 {
@@ -33,6 +36,7 @@ class HomeController extends Controller
 
     public function log()
     {
-        return view('users.log');
+        $fms = fms::all();
+        return view('users.log')->with('fms',$fms);
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFMS1Table extends Migration
+class CreateFillLevelLogsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,14 @@ class CreateFMS1Table extends Migration
      */
     public function up()
     {
-        Schema::create('_f_m_s1', function (Blueprint $table) {
+        Schema::create('fill_level_logs', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->bigInteger('fms_id')->unsigned();
+            $table->float('fillLevel');
             $table->timestamps();
-            $table->string('name');
-            $table->boolean('status');
+            $table->foreign('fms_id')->references('id')->on('fms')->onDelete('cascade');
         });
+        
     }
 
     /**
@@ -28,6 +30,6 @@ class CreateFMS1Table extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('_f_m_s1');
+        Schema::dropIfExists('fill_level_logs');
     }
 }

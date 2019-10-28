@@ -7,14 +7,14 @@
     <!-- <link rel="icon" type="image/png" href="{{ asset('assets') }}/img/fuel.png"> -->
     <img src="{{ asset('assets') }}/img/fuel.png">
     </a>
-    <a href="/home" class="simple-text logo-normal">
+    <a href="/log" class="simple-text logo-normal">
       {{ __('Fuel Monitoring') }}
     </a>
   </div>
   <div class="sidebar-wrapper" id="sidebar-wrapper">
     <ul class="nav">
       <li class="@if ($activePage == 'home') active @endif">
-        <a href="{{ route('home') }}">
+        <a href="{{ route('log') }}">
           <i class="now-ui-icons design_app"></i>
           <p>{{ __('Dashboard') }}</p>
         </a>
@@ -62,12 +62,12 @@
         </a>
       </li>
 
-      <li class = " @if ($activePage == 'fuelMonitoring') active @endif">
+      <!-- <li class = " @if ($activePage == 'fuelMonitoring') active @endif">
         <a href="{{ route('page.index','fuelMonitoring') }}">
           <i class="now-ui-icons travel_info"></i>
           <p>{{ __('Fuel Monitoring') }}</p>
         </a>
-      </li>
+      </li> -->
       <!-- <li class = " @if ($activePage == 'table') active @endif">
         <a href="{{ route('page.index','table') }}">
           <i class="now-ui-icons design_bullet-list-67"></i>
