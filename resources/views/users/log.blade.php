@@ -68,7 +68,15 @@
                   <td>{{$fms->status}}</td>
                   <td>{{$fms->fillLevel}}</td>
                   <td class="MuiTableCell-root SmartBoxesTable-tableCell-1257 MuiTableCell-body">
-                    <a href="{{ route('home') }}" class="btn btn-primary btn-round">See Logs</a>
+                    <!-- <a href="{{ route('fms_log') }}/{{$fms['fms_id']}}" class="btn btn-primary btn-round">See Logs</a> -->
+                  
+                    <form method="POST" action="{{route('fms_log')}}">
+                    @csrf
+                    <input type="hidden" value="{{$fms->id}}" name="id">
+                        <div class="col-sm-4">
+                          <button type="submit" class="btn btn-primary" id="log"> See Logs </button>
+                        </div>       
+                    </form>
                   </td>
                 </tr>
               @endforeach

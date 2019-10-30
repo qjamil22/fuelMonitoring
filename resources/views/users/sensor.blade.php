@@ -26,15 +26,12 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+    <div class="row">
       <div class="col-md-12">
         <div class="card">
             <div class="row">
-                <div class="col-md-6">
-                    <button onclick="myFunction()" class="btn btn-primary" style="float:right; border-radius:10px">Create New</button>
-                </div>
-                <div class="col-md-6">
-                    <button onclick="myFun()" class="btn btn-primary" style="border-radius:10px">Update</button>
+                <div class="col-md-12" align="center">
+                    <button onclick="myFunction()" class="btn btn-primary" style="border-radius:10px">Create New</button>
                 </div>
             </div>
 
@@ -99,87 +96,7 @@
       </div>
     </div>
 
-    <div class="row" id="upd_sensor" style="display:none">
-      
-      <div class="col-md-12">
-        <div class="card">
-          <div class="card-body">
-            <div class="places-buttons">
-              <div class="row">
-                <div class="col-md-6 ml-auto mr-auto text-center">
-                  <h4 class="card-title">
-                    Update Status
-                    </h4>
-                </div>
-              </div>
-              <form action="{{route('status_log')}}" method="POST">
-              @csrf 
-              <input type="hidden" name="id" value="" />
-              <div class="row" align="center">
-                <div class="col-md-12">
-                    <label>Fuel Monitoring Name:</label>
-                    <input type="text" name="name" value="" placeholder="Enter Sensor" />
-                </div>
-                <div class="col-md-12" name="id" value="">
-                    <label>Fuel Monitoring Status:</label>
-                    <select name="status">
-                        <option value="0" >0</option>
-                        <option value="1" selected>1</option>
-                    </select>
-                </div>
-                <div class="col-md-12">
-                    <button type="submit" class="btn btn-primary" style="border-radius:10px">Update</button>
-                </div>
-              </div>
-              </form>
-
-              
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="row" id="upd1_sensor" style="display:none">
-      
-      <div class="col-md-12">
-        <div class="card">
-          <div class="card-body">
-            <div class="places-buttons">
-              <div class="row">
-                <div class="col-md-6 ml-auto mr-auto text-center">
-                  <h4 class="card-title">
-                    Update Fill Level
-                    </h4>
-                </div>
-              </div>
-              <form action="{{route('fillLevel_log')}}" method="POST">
-              @csrf 
-              <input type="hidden" name="id" value="" />
-                <div class="row" align="center">
-                  <div class="col-md-12">
-                      <label>Fuel Monitoring Name:</label>
-                      <input type="text" name="name" value="" placeholder="Enter Sensor" />
-                  </div>
-                
-                
-                  <div class="col-md-12">
-                      <label>Fuel Monitoring Level:</label>
-                      <input type="double" name="fillLevel" value="" placeholder="00.00 %" />
-                  </div>
-
-                  <div class="col-md-12">
-                      <button type="submit" class="btn btn-primary" style="border-radius:10px">Update</button>
-                  </div>
-                </div>
-              </form>
-
-              
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    
 
     </div>
 
@@ -193,21 +110,9 @@
   }
 }
 
-function myFun() {
-  var x = document.getElementById("upd_sensor");
-  if (x.style.display === "none") {
-    x.style.display = "block";
-  } else {
-    x.style.display = "none";
-  }
-  var x = document.getElementById("upd1_sensor");
-  if (x.style.display === "none") {
-    x.style.display = "block";
-  } else {
-    x.style.display = "none";
-  }
-}
 
     
   </script>
+
+
 @endsection

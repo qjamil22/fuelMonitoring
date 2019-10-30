@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\fms;
 use App\fillLevel_logs;
 use App\status_logs;
@@ -38,11 +39,12 @@ class fuelMonitoringController extends Controller
      */
     public function store(Request $request){
         // dd($request);
+        $user = Auth::user();
         $fms = new fms();
  
         $fms->name = $request->name;
         $fms->timestamps = false;
- 
+        $fms->user_id = $user->id;
         $fms->save();
 
         $json = [
@@ -57,6 +59,15 @@ class fuelMonitoringController extends Controller
         //return redirect('log');
  
     }
+
+    // public function getlogs(Request $request)
+    // {
+    //     $fms->name = $request->name;
+    //     $fms->fillLevel = $request->fillLevel;
+    //     $fms->status = $request->status;
+    //     $fms->created_at = $request->created_at;
+    //     $fms->updated_at = $request->updated_at;
+    // }
 
     /**
      * Display the specified resource.
@@ -176,4 +187,5 @@ class fuelMonitoringController extends Controller
     {
         //
     }
+
 }

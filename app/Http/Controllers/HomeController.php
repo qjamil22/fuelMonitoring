@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\fms;
-use App\fillLevel_logs;
-use App\status_logs;
+use Illuminate\Support\Facades\Auth;
+use App\fms as f;
+use App\fillLevel_logs as fl;
+use App\status_logs as sl;
 
 class HomeController extends Controller
 {
@@ -34,9 +35,18 @@ class HomeController extends Controller
         return view('users.sensor');
     }
 
+    public function fms_log(Request $request)
+    {
+        $fms = f::where('id',$request->id)->first();
+        $fl = fl::where('fms_id',$request->id)->get();
+        $sl = sl::where('fms_id',$request->id)->get();
+        return view('users.fms_log')->with('fill_level_logs',$fl)->with('status_logs',$sl)->with('fms',$fms);
+    }
+
     public function log()
     {
-        $fms = fms::all();
+        $user = Auth::user();
+        $fms = f::where('user_id',$user->id)->get();
         return view('users.log')->with('fms',$fms);
     }
 }

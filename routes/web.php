@@ -19,6 +19,9 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/sensor', 'HomeController@sensor')->name('sensor');
 Route::get('/log', 'HomeController@log')->name('log');
+Route::post('/fms_log', 'HomeController@fms_log')->name('fms_log');
+
+// Route::get('/fill_level_logs', 'fuelMonitoring@getlogs')->name('fill_level_logs');
 
 
 Route::group(['middleware' => 'auth'], function () {
@@ -30,8 +33,8 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 // Route::post('/fuelMonitoring', 'fuelMonitoringController@store')->name('fuelMonitoring');
-Route::post('/status_log', 'fuelMonitoringController@updateStatusStatic')->name('status_log');
-Route::post('/fillLevel_log', 'fuelMonitoringController@updateFillevelStatic')->name('fillLevel_log');
+
 Route::post('/create', 'fuelMonitoringController@store')->name('create');
+
 
 // Route::get('/show', 'fuelMonitoringController@show');
