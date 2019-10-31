@@ -122,7 +122,7 @@ demo = {
         });
     },
 
-    initDashboardPageCharts: function() {
+    initDashboardPageCharts: function(avgFillLevel, dateLabels, statusCount) {
 
         chartColor = "#FFFFFF";
 
@@ -240,9 +240,9 @@ demo = {
         var myChart = new Chart(ctx, {
             type: 'line',
             data: {
-                labels: ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"],
+                labels: dateLabels,
                 datasets: [{
-                    label: "Data",
+                    label: "FillLevel Average",
                     borderColor: chartColor,
                     pointBorderColor: chartColor,
                     pointBackgroundColor: "#1e3d60",
@@ -255,7 +255,7 @@ demo = {
                     fill: true,
                     backgroundColor: gradientFill,
                     borderWidth: 2,
-                    data: [50, 150, 100, 190, 130, 90, 150, 160, 120, 140, 190, 95]
+                    data: avgFillLevel
                 }]
             },
             options: {
@@ -396,9 +396,9 @@ demo = {
         var a = {
             type: "bar",
             data: {
-                labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+                labels: dateLabels,
                 datasets: [{
-                    label: "Active Countries",
+                    label: "Door Open",
                     backgroundColor: gradientFill,
                     borderColor: "#2CA8FF",
                     pointBorderColor: "#FFF",
@@ -409,7 +409,7 @@ demo = {
                     pointRadius: 4,
                     fill: true,
                     borderWidth: 1,
-                    data: [80, 99, 86, 96, 123, 85, 100, 75, 88, 90, 123, 155]
+                    data: statusCount
                     
                 }]
             },

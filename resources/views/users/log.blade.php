@@ -25,9 +25,7 @@
             </div>
         </div>
 
-        <div class="panel-header panel-header-lg">
-    <canvas id="bigDashboardChart"></canvas>
-  </div>
+        
 
   <div class="row">
       <div class="col-md-12">
@@ -73,8 +71,8 @@
                     <form method="POST" action="{{route('fms_log')}}">
                     @csrf
                     <input type="hidden" value="{{$fms->id}}" name="id">
-                        <div class="col-sm-4">
-                          <button type="submit" class="btn btn-primary" id="log"> See Logs </button>
+                        <div class="col-sm-6">
+                          <button type="submit" class="btn btn-primary" style="border-radius:10px" id="log"> See Logs </button>
                         </div>       
                     </form>
                   </td>
@@ -92,12 +90,5 @@
 @endsection
 
 @push('js')
-  <script>
-    $(document).ready(function() {
-      // Javascript method's body can be found in assets/js/demos.js
-      demo.initDashboardPageCharts();
-
-    });
-
-    </script>
+  
 @endpush
