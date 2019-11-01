@@ -31,7 +31,7 @@ class HomeController extends Controller
     {
         $user = Auth::user();
         $fms = f::where('user_id',$user->id)->paginate(5);
-        return view('users.log')->with('fms',$fms);
+        return view('users.log')->with('fms',$fms)->with('user',$user);
     }
 
     public function sensor()
@@ -41,14 +41,15 @@ class HomeController extends Controller
 
     public function fms_log(Request $request)
     {
+        $user = Auth::user();
         $fms = f::where('id',$request->id)->first();
-        $fl = fl::where('fms_id',$request->id)->paginate(5);
-        $sl = sl::where('fms_id',$request->id)->paginate(5);
-
+        $fl = fl::where('fms_id',$request->id)->get();
+        $sl = sl::where('fms_id',$request->id)->get();
 
         $avgArray = [];
         $j = 0;
         $sum = 0;
+
         for($i=6; $i>=0; $i--) {
 
             $temp = DB::table('fill_level_logs')->where('fms_id', $request->id)->whereDate('created_at', Carbon::now()->subDays($i))->avg('fillLevel');
@@ -89,14 +90,15 @@ class HomeController extends Controller
                 ->with('fms',$fms)
                 ->with('avgFillLevel', $avgArray)
                 ->with('statusCount', $countArray)
-                ->with('dateLabels',$dateArray);
+                ->with('dateLabels',$dateArray)
+                ->with('user',$user);
     }
 
     public function log()
     {
         $user = Auth::user();
-        $fms = f::where('user_id',$user->id)->paginate(5);
-        return view('users.log')->with('fms',$fms);
+        $fms = f::where('user_id',$user->id)->paginate(10);
+        return view('users.log')->with('fms',$fms)->with('user',$user);
     }
 
 

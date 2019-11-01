@@ -55,7 +55,7 @@
                       <button class="btn btn-primary btn-block" onclick="nowuiDashboard.showNotification('bottom','center')">Bottom Center</button>
                     </div>
                     <div class="col-md-4">
-                      <button class="btn btn-primary btn-block" onclick="nowuiDashboard.showNotification('bottom','right')">Bottom Right</button>
+                      <button class="btn btn-primary btn-block" onclick="nowuiDashboard.showNotification('bottom','right','uiowebh34uio')">Bottom Right</button>
                     </div>
                   </div>
                 </div>

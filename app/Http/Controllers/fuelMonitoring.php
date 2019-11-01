@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\fms;
 use App\fillLevel_logs;
 use App\status_logs;
+use App\User;
 
 class fuelMonitoringController extends Controller
 {
@@ -38,7 +39,7 @@ class fuelMonitoringController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request){
-        // dd($request);
+
         $user = Auth::user();
         $fms = new fms();
  
@@ -46,17 +47,8 @@ class fuelMonitoringController extends Controller
         $fms->timestamps = false;
         $fms->user_id = $user->id;
         $fms->save();
-
-        $json = [
-            'message' => 'Saved Successfully',
-        ];
-
-        //return view('home');
-        return json_encode($json);
-
-       
         
-        //return redirect('log');
+        return redirect()->back();
  
     }
 
@@ -106,7 +98,26 @@ class fuelMonitoringController extends Controller
      */
     public function updateFillevelStatic(Request $request)
     {
+
         $fms = fms::where('id',$request->id)->first();
+        $user = User::where('id', $fms->user_id)->first(); 
+
+        $options = array(
+            'cluster' => 'ap1',
+            'useTLS' => true
+          );
+
+          $pusher = new \Pusher\Pusher(
+            'cb63405c99491817179a',
+            '03d03727d6af15846cd3',
+            '891538',
+            $options
+          );
+
+        $pusher->trigger($user->id."-channel","update-fillLevel",$request->fillLevel);
+        $pusher->trigger($user->id."-channel","notification","Fill Level has been updated of fms ".$fms->name." Fill Level is ".$request->fillLevel);
+
+        
         $fms->fillLevel = $request->fillLevel;
         $fms->timestamps = false;
         $fms->save();
@@ -136,14 +147,30 @@ class fuelMonitoringController extends Controller
             'message' => 'Saved Successfully',
         ];
 
-        //return view('home');
         return json_encode($json);
     }
 
     public function updateStatusStatic(Request $request)
     {
-      //  dd($request);
+
         $fms = fms::where('id',$request->id)->first();
+        $user = User::where('id', $fms->user_id)->first(); 
+
+        $options = array(
+            'cluster' => 'ap1',
+            'useTLS' => true
+          );
+
+          $pusher = new \Pusher\Pusher(
+            'cb63405c99491817179a',
+            '03d03727d6af15846cd3',
+            '891538',
+            $options
+          );
+
+        $pusher->trigger($user->id."-channel","update-status",$request->status);
+        $pusher->trigger($user->id."-channel","notification","Door status has been updated of fms ".$fms->name." Door status is ".$request->status);
+
         $fms->status = $request->status;
         $fms->timestamps = false;
         $fms->save();
@@ -173,7 +200,6 @@ class fuelMonitoringController extends Controller
             'message' => 'Saved Successfully',
         ];
 
-        //return view('home');
         return json_encode($json);
     }
 

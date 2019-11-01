@@ -167,7 +167,6 @@
                 @endforeach
               </tbody>
             </table>
-            {{ $status_logs->links() }}
           </div>
             </div>
           </div>
@@ -317,7 +316,6 @@
                   @endforeach
               </tbody>
             </table>
-            {{ $fill_level_logs->links() }}
           </div>
             </div>
           </div>
@@ -330,7 +328,43 @@
       
   <!-- end chart -->
     </div>
+    
+    <script>
+        // Enable pusher logging - don't include this in production
+        Pusher.logToConsole = true;
 
+            var pusher = new Pusher('cb63405c99491817179a', {
+              cluster: 'ap1',
+              forceTLS: true
+            });
+
+            var channel = pusher.subscribe('{{$user->id}}-channel');
+            channel.bind('notification', function(data) {
+                
+              color = 'primary';
+
+                  $.notify({
+                      icon: "now-ui-icons ui-1_bell-53",
+                      message: data
+                  }, {
+                      type: color,
+                      timer: 8000,
+                      placement: {
+                          from: 'bottom',
+                          align: 'right'
+                      }
+                  });
+            });
+
+            channel.bind('update-fillLevel', function(data) {
+              //alert(JSON.stringify(data));
+            });
+
+            channel.bind('update-status', function(data) {
+             //alert(JSON.stringify(data));
+            });
+            
+    </script>
     
 
 @endsection

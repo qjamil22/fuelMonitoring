@@ -54,6 +54,7 @@
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="{{ asset('assets') }}/demo/demo.css" rel="stylesheet" />
   <!-- Google Tag Manager -->
+  <script src="https://js.pusher.com/5.0/pusher.min.js"></script>
   <script>
     (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
