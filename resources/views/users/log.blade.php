@@ -60,17 +60,17 @@
               </tfoot>
               
               <tbody>
-              @foreach($fms as $fms)
+              @foreach($fms as $f)
                 <tr>
-                  <td>{{$fms->name}}</td>
-                  <td>{{$fms->status}}</td>
-                  <td>{{$fms->fillLevel}}</td>
+                  <td>{{$f->name}}</td>
+                  <td>{{$f->status}}</td>
+                  <td>{{$f->fillLevel}}</td>
                   <td class="MuiTableCell-root SmartBoxesTable-tableCell-1257 MuiTableCell-body">
                     <!-- <a href="{{ route('fms_log') }}/{{$fms['fms_id']}}" class="btn btn-primary btn-round">See Logs</a> -->
                   
                     <form method="POST" action="{{route('fms_log')}}">
                     @csrf
-                    <input type="hidden" value="{{$fms->id}}" name="id">
+                    <input type="hidden" value="{{$f->id}}" name="id">
                         <div class="col-sm-6">
                           <button type="submit" class="btn btn-primary" style="border-radius:10px" id="log"> See Logs </button>
                         </div>       
@@ -80,6 +80,7 @@
               @endforeach
               </tbody>
             </table>
+            {{ $fms->links() }}
           </div>
           <!-- end content-->
         </div>

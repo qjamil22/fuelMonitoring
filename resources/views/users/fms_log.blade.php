@@ -167,6 +167,7 @@
                 @endforeach
               </tbody>
             </table>
+            {{ $status_logs->links() }}
           </div>
             </div>
           </div>
@@ -316,6 +317,7 @@
                   @endforeach
               </tbody>
             </table>
+            {{ $fill_level_logs->links() }}
           </div>
             </div>
           </div>

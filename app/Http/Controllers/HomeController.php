@@ -29,7 +29,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $user = Auth::user();
+        $fms = f::where('user_id',$user->id)->paginate(5);
+        return view('users.log')->with('fms',$fms);
     }
 
     public function sensor()
@@ -40,8 +42,8 @@ class HomeController extends Controller
     public function fms_log(Request $request)
     {
         $fms = f::where('id',$request->id)->first();
-        $fl = fl::where('fms_id',$request->id)->get();
-        $sl = sl::where('fms_id',$request->id)->get();
+        $fl = fl::where('fms_id',$request->id)->paginate(5);
+        $sl = sl::where('fms_id',$request->id)->paginate(5);
 
 
         $avgArray = [];
@@ -93,7 +95,7 @@ class HomeController extends Controller
     public function log()
     {
         $user = Auth::user();
-        $fms = f::where('user_id',$user->id)->get();
+        $fms = f::where('user_id',$user->id)->paginate(5);
         return view('users.log')->with('fms',$fms);
     }
 
