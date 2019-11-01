@@ -31,7 +31,7 @@
       <div class="col-md-12">
         <div class="card">
           <div class="card-header">
-          <a class="btn btn-primary btn-round text-white pull-right" href="{{ route('sensor') }}">{{ __('Fuel Monitoring Sensor') }}</a>
+          <a class="btn btn-primary btn-round text-white pull-right" href="{{ route('sensor') }}">{{ __('Add New Fuel Monitoring') }}</a>
             <h4 class="card-title">Fuel Monitoring</h4>
             <div class="col-12 mt-2">
                                         </div>

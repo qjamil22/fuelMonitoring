@@ -36,7 +36,9 @@ class HomeController extends Controller
 
     public function sensor()
     {
-        return view('users.sensor');
+        $user = Auth::user();
+        $success = null;
+        return view('users.sensor')->with('success',$success)->with('user',$user);
     }
 
     public function fms_log(Request $request)

@@ -145,7 +145,7 @@ nowuiDashboard = {
 
         $.notify({
             icon: "now-ui-icons ui-1_bell-53",
-            message: "askldjawepdjaklsdnalkfnq3iorneionkl"
+            message: "New Fuel Monitoring Add"
 
         }, {
             type: color,

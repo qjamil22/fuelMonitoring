@@ -26,14 +26,11 @@
                 </div>
             </div>
         </div>
+    @include('alerts.messages')
     <div class="row">
       <div class="col-md-12">
-        <div class="card">
-            <div class="row">
-                <div class="col-md-12" align="center">
-                    <button onclick="myFunction()" class="btn btn-primary" style="border-radius:10px">Create New</button>
-                </div>
-            </div>
+        
+
 
            
           <div class="card-body">
@@ -45,12 +42,12 @@
             </table>
           </div>
           <!-- end content-->
-        </div>
+        
         <!--  end card  -->
       </div>
       <!-- end col-md-12 -->
     </div>
-    <div class="row" id="ad_sensor" style="display:none">
+    <div class="row" id="ad_sensor">
       
       <div class="col-md-12">
         <div class="card">
@@ -86,11 +83,22 @@
                 </div> -->
 
                 <div class="col-md-12">
-                    <button type="submit" class="btn btn-primary" style="border-radius:10px">Create</button>
+                    <button type="submit" onclick="nowuiDashboard.showNotification('top','center')" class="btn btn-primary" style="border-radius:10px">Create</button>
                 </div>
+
               </div>
               </form>
+
+
+              @if($success != null)
+              <p>238974ywfv78</p>
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                  {{$success}}
+                </div>
+                @endif
+
             </div>
+
           </div>
         </div>
       </div>

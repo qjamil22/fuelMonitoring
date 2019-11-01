@@ -48,7 +48,7 @@ class fuelMonitoringController extends Controller
         $fms->user_id = $user->id;
         $fms->save();
         
-        return redirect()->back();
+        return redirect()->back()->with('success','Created Successfully');
  
     }
 
