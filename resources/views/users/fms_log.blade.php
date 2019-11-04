@@ -56,7 +56,12 @@
                 <tbody>
                   <tr>
                     <td>{{$fms->name}}</td>
-                    <td>{{$fms->status}}</td>
+                    @if($fms->status == 1)
+                            <td> Door Open </td>
+                       @else
+                            <td>Door Close</td>
+                        @endif
+                    <!-- <td>{{$fms->status}}</td> -->
                     <td>{{$fms->fillLevel}}</td>
                   </tr>
                 </tbody>

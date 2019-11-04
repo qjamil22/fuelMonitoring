@@ -63,7 +63,12 @@
               @foreach($fms as $f)
                 <tr>
                   <td>{{$f->name}}</td>
-                  <td>{{$f->status}}</td>
+                  @if($f->status == 1)
+                            <td> Door Open </td>
+                       @else
+                            <td>Door Close</td>
+                        @endif
+                  <!-- <td>{{$f->status}}</td> -->
                   <td>{{$f->fillLevel}}</td>
                   <td class="MuiTableCell-root SmartBoxesTable-tableCell-1257 MuiTableCell-body">
                     <!-- <a href="{{ route('fms_log') }}/{{$fms['fms_id']}}" class="btn btn-primary btn-round">See Logs</a> -->

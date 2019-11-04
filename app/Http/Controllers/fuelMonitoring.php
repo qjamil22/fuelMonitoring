@@ -40,6 +40,10 @@ class fuelMonitoringController extends Controller
      */
     public function store(Request $request){
 
+        $request->validate([
+            'name' => 'required'
+        ]);
+
         $user = Auth::user();
         $fms = new fms();
  
@@ -52,15 +56,6 @@ class fuelMonitoringController extends Controller
  
     }
 
-    // public function getlogs(Request $request)
-    // {
-    //     $fms->name = $request->name;
-    //     $fms->fillLevel = $request->fillLevel;
-    //     $fms->status = $request->status;
-    //     $fms->created_at = $request->created_at;
-    //     $fms->updated_at = $request->updated_at;
-    // }
-
     /**
      * Display the specified resource.
      *
@@ -69,13 +64,9 @@ class fuelMonitoringController extends Controller
      */
     public function show($id)
     {
-            //Fetching all the posts from the database
-            // $posts = Post::all();
+            
             return view('home',['_f_m_s'=> $fms]);
-        // $fms = new fms();
-        //     // $user = Auth::user();
-        // $fms = fms::where('status', $fms->status)->where('fuelMonitoring',"fms")->get();
-        // return view('fms.home')->with('fms',$fms)->with('fms', $fms);
+        
     }
 
     /**

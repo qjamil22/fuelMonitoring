@@ -30,8 +30,10 @@ class HomeController extends Controller
     public function index()
     {
         $user = Auth::user();
+    
         $fms = f::where('user_id',$user->id)->paginate(5);
         return view('users.log')->with('fms',$fms)->with('user',$user);
+
     }
 
     public function sensor()
@@ -99,7 +101,7 @@ class HomeController extends Controller
     public function log()
     {
         $user = Auth::user();
-        $fms = f::where('user_id',$user->id)->paginate(10);
+        $fms = f::where('user_id',$user->id)->paginate(7);
         return view('users.log')->with('fms',$fms)->with('user',$user);
     }
 

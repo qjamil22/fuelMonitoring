@@ -55,12 +55,12 @@
           <p>{{ __('Maps') }}</p>
         </a>
       </li> -->
-      <li class = " @if ($activePage == 'notifications') active @endif">
-        <a href="{{ route('page.index','notifications') }}">
+      <!-- <li class = " @if ($activePage == 'customers') active @endif">
+        <a href="{{ route('page.index','customers') }}">
           <i class="now-ui-icons ui-1_bell-53"></i>
-          <p>{{ __('Notifications') }}</p>
+          <p>{{ __('Cutomers') }}</p>
         </a>
-      </li>
+      </li> -->
 
       <!-- <li class = " @if ($activePage == 'fuelMonitoring') active @endif">
         <a href="{{ route('page.index','fuelMonitoring') }}">

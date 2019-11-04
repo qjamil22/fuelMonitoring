@@ -83,7 +83,7 @@
                 </div> -->
 
                 <div class="col-md-12">
-                    <button type="submit" onclick="nowuiDashboard.showNotification('top','center')" class="btn btn-primary" style="border-radius:10px">Create</button>
+                    <button type="submit" class="btn btn-primary" style="border-radius:10px">Create</button>
                 </div>
 
               </div>

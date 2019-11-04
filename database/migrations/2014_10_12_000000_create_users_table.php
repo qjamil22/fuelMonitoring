@@ -33,4 +33,17 @@ class CreateUsersTable extends Migration
     {
         Schema::dropIfExists('users');
     }
+
+    public function isSuperAdmin()
+    {
+        foreach ($this->roles()->get() as $role)
+        {
+            if ($role->name == 'master')
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }

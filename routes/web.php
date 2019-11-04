@@ -16,6 +16,9 @@ Route::get('/', function () {
 });
 Auth::routes();
 
+Route::get('/admin', 'AdminController@index');
+Route::get('/home', 'MemberController@index');
+
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/sensor', 'HomeController@sensor')->name('sensor');
 Route::get('/log', 'HomeController@log')->name('log');
