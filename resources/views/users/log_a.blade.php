@@ -1,21 +1,37 @@
-@extends('layouts.app', [
-  'namePage' => 'User Details',
-  'class' => 'sidebar-mini',
-  'activePage' => 'notifications',
+@extends('layouts.app_u', [
+    'class' => 'sidebar-mini ',
+    'namePage' => 'Dashboard',
+    'activePage' => 'user_u',
+    'activeNav' => 'sidebar_u',
 ])
 
 @section('content')
-  <div class="panel-header">
-    <div class="header text-center">
-      <h2 class="title">Sensor Details</h2>
-      </p>
+    <div class="panel-header panel-header-sm">
     </div>
-  </div>
-  
+    <div class="content">
+        <div class="row">
+            <div class="col-xl-12 order-xl-1">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="row align-items-center">
+                            <div class="col-8">
+                                <h3 class="mb-0">{{ __('Dashboard') }}</h3>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+
+        
+
   <div class="row">
       <div class="col-md-12">
         <div class="card">
           <div class="card-header">
+          <a class="btn btn-primary btn-round text-white pull-right" href="{{ route('sensor') }}">{{ __('Add New Fuel Monitoring') }}</a>
             <h4 class="card-title">Fuel Monitoring</h4>
             <div class="col-12 mt-2">
                                         </div>
@@ -77,4 +93,43 @@
       </div>
       <!-- end col-md-12 -->
     </div>
+    <script>
+        // Enable pusher logging - don't include this in production
+        Pusher.logToConsole = true;
+
+            var pusher = new Pusher('cb63405c99491817179a', {
+              cluster: 'ap1',
+              forceTLS: true
+            });
+
+            var channel = pusher.subscribe('{{$user->id}}-channel');
+            channel.bind('notification', function(data) {
+              color = 'primary';
+
+                  $.notify({
+                      icon: "now-ui-icons ui-1_bell-53",
+                      message: data
+                  }, {
+                      type: color,
+                      timer: 8000,
+                      placement: {
+                          from: 'bottom',
+                          align: 'right'
+                      }
+                  });
+            });
+
+            channel.bind('update-fillLevel', function(data) {
+              // alert(JSON.stringify(data));
+            });
+
+            channel.bind('update-status', function(data) {
+              // alert(JSON.stringify(data));
+            });
+
+    </script>
 @endsection
+
+@push('js')
+  
+@endpush

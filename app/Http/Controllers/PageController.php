@@ -17,4 +17,11 @@ class PageController extends Controller
         }
         return abort(404);
     }
+
+    public function useru()
+    {
+        if (view()->exists("pages.{$page}")){
+            return view("pages.{$page}");
+        }
+    }
 }

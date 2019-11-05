@@ -1,7 +1,7 @@
 @extends('layouts.app', [
     'class' => 'sidebar-mini ',
     'namePage' => 'Dashboard',
-    'activePage' => 'user',
+    'activePage' => 'user_u',
     'activeNav' => '',
 ])
 

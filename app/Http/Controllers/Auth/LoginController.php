@@ -48,8 +48,8 @@ class LoginController extends Controller
             if($role->name == 'admin'){
                 return view('users.admin');
             }
-            else if($role->name == 'member'){
-                return redirect('/home');
+            else {
+                return redirect('/log');
             }
         }
     }

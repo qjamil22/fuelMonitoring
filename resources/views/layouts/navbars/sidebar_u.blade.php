@@ -1,4 +1,3 @@
-
 <div class="sidebar" data-color="orange">
   <!--
     Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
@@ -38,8 +37,8 @@
                 <p> {{ __("User Profile") }} </p>
               </a>
             </li>
-            <li class="@if ($activePage == 'users') active @endif">
-              <a href="{{ route('user.index') }}">
+            <li class="@if ($activePage == 'user') active @endif">
+              <a href="/user_u">
                 <i class="now-ui-icons design_bullet-list-67"></i>
                 <p> {{ __("Users Details") }} </p>
               </a>
