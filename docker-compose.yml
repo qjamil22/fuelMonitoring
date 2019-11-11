@@ -5,3 +5,16 @@ services:
     image: 'bitnami/apache:latest'
     ports:
       - '81:80'
+      
+services:
+  db:
+    image: mysql:5.7
+    volumes:
+      - "./.data/db:/var/lib/mysql"
+    restart: always
+    environment:
+      MYSQL_DATABASE: fms
+      MYSQL_USER: dashuser
+      MYSQL_PASSWORD: dash12345678
+    ports:
+      - "3306:3306"
