@@ -1,4 +1,4 @@
-@extends('layouts.app_u', [
+@extends('layouts.app', [
   'namePage' => 'User Details',
   'class' => 'sidebar-mini',
   'activePage' => 'notifications',
@@ -57,7 +57,7 @@
                   <td class="MuiTableCell-root SmartBoxesTable-tableCell-1257 MuiTableCell-body">
                     <!-- <a href="{{ route('fms_log') }}/{{$fms['fms_id']}}" class="btn btn-primary btn-round">See Logs</a> -->
                   
-                    <form method="POST" action="{{route('fms_log')}}">
+                    <form method="POST" action="{{route('fms_log_a')}}">
                     @csrf
                     <input type="hidden" value="{{$f->id}}" name="id">
                         <div class="col-sm-6">

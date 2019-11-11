@@ -7,6 +7,11 @@ use Illuminate\Support\Facades\Auth;
 use App\fms;
 use App\fillLevel_logs;
 use App\status_logs;
+use App\voltage_logs;
+use App\current_logs;
+use App\power_logs;
+use App\temperature_logs;
+use App\genStatus_logs;
 use App\User;
 
 class fuelMonitoringController extends Controller
@@ -89,7 +94,7 @@ class fuelMonitoringController extends Controller
      */
     public function updateFillevelStatic(Request $request)
     {
-
+dd($request);
         $fms = fms::where('id',$request->id)->first();
         $user = User::where('id', $fms->user_id)->first(); 
 
@@ -110,6 +115,11 @@ class fuelMonitoringController extends Controller
 
         
         $fms->fillLevel = $request->fillLevel;
+        $fms->voltage = $request->voltage;
+        $fms->current = $request->current;
+        $fms->power = $request->power;
+        $fms->temperature = $request->temperature;
+        $fms->genStatus = $request->genStatus;
         $fms->timestamps = false;
         $fms->save();
 

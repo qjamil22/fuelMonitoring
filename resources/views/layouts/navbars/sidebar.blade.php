@@ -8,14 +8,14 @@
     <!-- <link rel="icon" type="image/png" href="{{ asset('assets') }}/img/fuel.png"> -->
     <img src="{{ asset('assets') }}/img/fuel.png">
     </a>
-    <a href="/log" class="simple-text logo-normal">
+    <a href="/log_a" class="simple-text logo-normal">
       {{ __('Fuel Monitoring') }}
     </a>
   </div>
   <div class="sidebar-wrapper" id="sidebar-wrapper">
     <ul class="nav">
       <li class="@if ($activePage == 'home') active @endif">
-        <a href="{{ route('log') }}">
+        <a href="{{ route('log_a') }}">
           <i class="now-ui-icons design_app"></i>
           <p>{{ __('Dashboard') }}</p>
         </a>
@@ -33,7 +33,7 @@
         <div class="collapse show" id="laravelExamples">
           <ul class="nav">
             <li class="@if ($activePage == 'profile') active @endif">
-              <a href="{{ route('profile.edit') }}">
+              <a href="/edit_a">
                 <i class="now-ui-icons users_single-02"></i>
                 <p> {{ __("User Profile") }} </p>
               </a>

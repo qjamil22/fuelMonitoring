@@ -1,4 +1,4 @@
-@extends('layouts.app_u', [
+@extends('layouts.app', [
     'class' => 'sidebar-mini ',
     'namePage' => 'Dashboard',
     'activePage' => 'user_u',
@@ -46,6 +46,11 @@
                   <th>{{ __('Fuel Monitoring Name') }}</th>
                   <th>{{ __('Door Status') }}</th>
                   <th>{{ __('Fuel Level') }}</th>
+                  <th>{{ __('Voltage') }}</th>
+                  <th>{{ __('Current') }}</th>
+                  <th>{{ __('Power') }}</th>
+                  <th>{{ __('Temperature') }}</th>
+                  <th>{{ __('Gen_Status') }}</th>
                   <th>{{ __('Logs') }}</th>
                 </tr>
               </thead>
@@ -55,6 +60,11 @@
                   <th>{{ __('Fuel Monitoring Name') }}</th>
                   <th>{{ __('Door Status') }}</th>
                   <th>{{ __('Fuel Level') }}</th>
+                  <th>{{ __('Voltage') }}</th>
+                  <th>{{ __('Current') }}</th>
+                  <th>{{ __('Power') }}</th>
+                  <th>{{ __('Temperature') }}</th>
+                  <th>{{ __('Gen_Status') }}</th>
                   <th>{{ __('Logs') }}</th>
                 </tr>
               </tfoot>
@@ -70,10 +80,19 @@
                         @endif
                   <!-- <td>{{$f->status}}</td> -->
                   <td>{{$f->fillLevel}}</td>
+                  <td>{{$f->voltage}}</td>
+                  <td>{{$f->current}}</td>
+                  <td>{{$f->power}}</td>
+                  <td>{{$f->temperature}}</td>
+                  @if($f->genStatus == 1)
+                            <td> Generator On </td>
+                       @else
+                            <td>Generator Off</td>
+                        @endif
                   <td class="MuiTableCell-root SmartBoxesTable-tableCell-1257 MuiTableCell-body">
                     <!-- <a href="{{ route('fms_log') }}/{{$fms['fms_id']}}" class="btn btn-primary btn-round">See Logs</a> -->
                   
-                    <form method="POST" action="{{route('fms_log')}}">
+                    <form method="POST" action="{{route('fms_log_a')}}">
                     @csrf
                     <input type="hidden" value="{{$f->id}}" name="id">
                         <div class="col-sm-6">

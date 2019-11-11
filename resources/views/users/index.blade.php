@@ -55,7 +55,7 @@
                     <td>{{$user->email}}</td>
                     <td>{{ $user->created_at->format('d/m/Y H:i') }}</td>
                       <td class="text-right">
-                      <form method="POST" action="{{route('notifications')}}">
+                      <form method="POST" action="{{route('notifications_a')}}">
                     @csrf
                     <input type="hidden" value="{{$user->id}}" name="user_id" />
                         <div class="col-sm-6">

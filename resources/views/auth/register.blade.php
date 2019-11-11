@@ -116,6 +116,21 @@
                   </div>
                   <input class="form-control" placeholder="{{ __('Confirm Password') }}" type="password" name="password_confirmation" required>
                 </div>
+
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      <i class="now-ui-icons users_circle-08"></i></i>
+                    </div>
+                  </div>
+                  <!-- <input class="form-control" placeholder="{{ __('Role') }}" type="password" name="role" required> -->
+                  <select class="form-control" placeholder="{{ __('Role') }}" type="role" name="role" required>
+                  <option >Select Role</option>
+                    <option value="admin">Admin</option>
+                    <option value="member">Member</option>
+                  </select>
+                </div>
+
                 <div class="form-check text-left">
                   <label class="form-check-label">
                     <input class="form-check-input" type="checkbox">
