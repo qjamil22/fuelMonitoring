@@ -29,6 +29,11 @@ class UserController extends Controller
         return view('users.create');
     }
 
+    public function create_a()
+    {
+        return view('users.create_a');
+    }
+
     /**
      * Store a newly created user in storage
      *

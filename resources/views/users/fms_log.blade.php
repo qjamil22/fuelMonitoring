@@ -42,6 +42,11 @@
                     <th>{{ __('Fuel Monitoring Name') }}</th>
                     <th>{{ __('Current Door Status') }}</th>
                     <th>{{ __('Current Fuel Level') }}</th>
+                    <th>{{ __('Voltage') }}</th>
+                    <th>{{ __('Current') }}</th>
+                    <th>{{ __('Power') }}</th>
+                    <th>{{ __('Temperature') }}</th>
+                    <th>{{ __('Gen_Status') }}</th>
                   </tr>
                 </thead>
 
@@ -50,11 +55,16 @@
                     <th>{{ __('Fuel Monitoring Name') }}</th>
                     <th>{{ __('Current Door Status') }}</th>
                     <th>{{ __('Current Fuel Level') }}</th>
+                    <th>{{ __('Voltage') }}</th>
+                    <th>{{ __('Current') }}</th>
+                    <th>{{ __('Power') }}</th>
+                    <th>{{ __('Temperature') }}</th>
+                    <th>{{ __('Gen_Status') }}</th>
                   </tr>
                 </tfoot>
               
                 <tbody>
-                  <tr>
+                <tr>
                     <td>{{$fms->name}}</td>
                     @if($fms->status == 1)
                             <td> Door Open </td>
@@ -63,6 +73,15 @@
                         @endif
                     <!-- <td>{{$fms->status}}</td> -->
                     <td>{{$fms->fillLevel}}</td>
+                    <td>{{$fms->voltage}}</td>
+                  <td>{{$fms->current}}</td>
+                  <td>{{$fms->power}}</td>
+                  <td>{{$fms->temperature}}</td>
+                  @if($fms->genStatus == 1)
+                            <td> Generator On </td>
+                       @else
+                            <td>Generator Off</td>
+                        @endif
                   </tr>
                 </tbody>
               </table>
@@ -70,8 +89,8 @@
           <!-- end content-->
         </div>
 
-    <div class="row">
-      <div class="col-md-6">
+        <div class="row">
+      <div class="col-md-2">
         
             <div class="row">
                 <div class="col-md-12" align="center">
@@ -94,7 +113,7 @@
       </div>
       <!-- end col-md-12 -->
 
-      <div class="col-md-6">
+      <div class="col-md-2">
         
             <div class="row">
                 <div class="col-md-12" align="center">
@@ -114,6 +133,116 @@
           <!-- end content-->
         </div>
         <!--  end card  -->
+
+        <div class="col-md-1.71">
+        
+            <div class="row">
+                <div class="col-md-12" align="center">
+                    <button onclick="myFun1()" class="btn btn-primary" style="border-radius:10px">Voltage Log</button>
+                </div>
+            </div>
+
+           
+          <div class="card-body">
+            <div class="toolbar">
+              <!--        Here you can write extra buttons/actions for the toolbar              -->
+            </div>
+            <table id="datatable1" class="table table-striped table-bordered" cellspacing="0" width="100%">
+              
+            </table>
+          </div>
+          <!-- end content-->
+        
+        <!--  end card  -->
+      </div>
+
+      <div class="col-md-2">
+        
+            <div class="row">
+                <div class="col-md-12" align="center">
+                    <button onclick="myFun2()" class="btn btn-primary" style="border-radius:10px">Current Log</button>
+                </div>
+            </div>
+
+           
+          <div class="card-body">
+            <div class="toolbar">
+              <!--        Here you can write extra buttons/actions for the toolbar              -->
+            </div>
+            <table id="datatable1" class="table table-striped table-bordered" cellspacing="0" width="100%">
+              
+            </table>
+          </div>
+          <!-- end content-->
+        
+        <!--  end card  -->
+      </div>
+
+      <div class="col-md-1.71">
+        
+            <div class="row">
+                <div class="col-md-12" align="center">
+                    <button onclick="myFun3()" class="btn btn-primary" style="border-radius:10px">Power Log</button>
+                </div>
+            </div>
+
+           
+          <div class="card-body">
+            <div class="toolbar">
+              <!--        Here you can write extra buttons/actions for the toolbar              -->
+            </div>
+            <table id="datatable1" class="table table-striped table-bordered" cellspacing="0" width="100%">
+              
+            </table>
+          </div>
+          <!-- end content-->
+        
+        <!--  end card  -->
+      </div>
+
+      <div class="col-md-2">
+        
+            <div class="row">
+                <div class="col-md-12" align="center">
+                    <button onclick="myFun4()" class="btn btn-primary" style="border-radius:10px">Temperature Log</button>
+                </div>
+            </div>
+
+           
+          <div class="card-body">
+            <div class="toolbar">
+              <!--        Here you can write extra buttons/actions for the toolbar              -->
+            </div>
+            <table id="datatable1" class="table table-striped table-bordered" cellspacing="0" width="100%">
+              
+            </table>
+          </div>
+          <!-- end content-->
+        
+        <!--  end card  -->
+      </div>
+
+      <div class="col-md-1.71">
+        
+            <div class="row">
+                <div class="col-md-12" align="center">
+                    <button onclick="myFun5()" class="btn btn-primary" style="border-radius:10px">Generator Status Log</button>
+                </div>
+            </div>
+
+           
+          <div class="card-body">
+            <div class="toolbar">
+              <!--        Here you can write extra buttons/actions for the toolbar              -->
+            </div>
+            <table id="datatable1" class="table table-striped table-bordered" cellspacing="0" width="100%">
+              
+            </table>
+          </div>
+          <!-- end content-->
+        
+        <!--  end card  -->
+      </div>
       
     </div>
 
@@ -328,11 +457,321 @@
       </div>
       <!-- Line Chart -->
       <div class="panel-header panel-header-lg">
-        <canvas id="bigDashboardChart"></canvas>
+        <canvas id="fillLevelChart"></canvas>
       </div>
       
   <!-- end chart -->
     </div>
+
+    <div class="row" id="voltage_log" style="display:none">
+      
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="places-buttons">
+              <div class="row">
+                <div class="col-md-6 ml-auto mr-auto text-center">
+                  <h4 class="card-title">
+                    Voltage Log
+                    </h4>
+                </div>
+              </div>
+              <div class="card-body">
+            <div class="toolbar">
+              <!--        Here you can write extra buttons/actions for the toolbar              -->
+            </div>
+            <table id="datatable1" class="table table-striped table-bordered" cellspacing="0" width="100%">
+              <thead>
+                <tr>
+                  <th>{{ __('Fuel Monitoring Name') }}</th>
+                  <th>{{ __('Voltage') }}</th>
+                  <th>{{ __('From') }}</th>
+                  <th>{{ __('To') }}</th>
+                </tr>
+              </thead>
+
+              <tfoot>
+                <tr>
+                  <th>{{ __('Fuel Monitoring Name') }}</th>
+                  <th>{{ __('Voltage') }}</th>
+                  <th>{{ __('From') }}</th>
+                  <th>{{ __('To') }}</th>
+                </tr>
+              </tfoot>
+                
+              <tbody>
+             <!-- Write Something -->
+                  @foreach($voltage_logs as $vl)
+                    <tr align="center">
+                        <td> {{$fms->name}} </td>
+                        <td> {{$vl->voltage}} </td>
+                        <td> {{$vl->created_at}}</td>
+                        <td> {{$vl->updated_at}}</td>
+                    </tr>
+                  @endforeach
+              </tbody>
+            </table>
+          </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Line Chart -->
+      <div class="panel-header panel-header-lg">
+        <canvas id="voltageChart"></canvas>
+      </div>
+      
+  <!-- end chart -->
+    </div>
+
+    <div class="row" id="current_log" style="display:none">
+      
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="places-buttons">
+              <div class="row">
+                <div class="col-md-6 ml-auto mr-auto text-center">
+                  <h4 class="card-title">
+                    Current Log
+                    </h4>
+                </div>
+              </div>
+              <div class="card-body">
+            <div class="toolbar">
+              <!--        Here you can write extra buttons/actions for the toolbar              -->
+            </div>
+            <table id="datatable1" class="table table-striped table-bordered" cellspacing="0" width="100%">
+              <thead>
+                <tr>
+                  <th>{{ __('Fuel Monitoring Name') }}</th>
+                  <th>{{ __('Current') }}</th>
+                  <th>{{ __('From') }}</th>
+                  <th>{{ __('To') }}</th>
+                </tr>
+              </thead>
+
+              <tfoot>
+                <tr>
+                  <th>{{ __('Fuel Monitoring Name') }}</th>
+                  <th>{{ __('Current') }}</th>
+                  <th>{{ __('From') }}</th>
+                  <th>{{ __('To') }}</th>
+                </tr>
+              </tfoot>
+                
+              <tbody>
+             <!-- Write Something -->
+                  @foreach($current_logs as $cl)
+                    <tr align="center">
+                        <td> {{$fms->name}} </td>
+                        <td> {{$cl->current}} </td>
+                        <td> {{$cl->created_at}}</td>
+                        <td> {{$cl->updated_at}}</td>
+                    </tr>
+                  @endforeach
+              </tbody>
+            </table>
+          </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Line Chart -->
+      <div class="panel-header panel-header-lg">
+        <canvas id="currentChart"></canvas>
+      </div>
+      
+  <!-- end chart -->
+    </div>
+
+    <div class="row" id="power_log" style="display:none">
+      
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="places-buttons">
+              <div class="row">
+                <div class="col-md-6 ml-auto mr-auto text-center">
+                  <h4 class="card-title">
+                    Power Log
+                    </h4>
+                </div>
+              </div>
+              <div class="card-body">
+            <div class="toolbar">
+              <!--        Here you can write extra buttons/actions for the toolbar              -->
+            </div>
+            <table id="datatable1" class="table table-striped table-bordered" cellspacing="0" width="100%">
+              <thead>
+                <tr>
+                  <th>{{ __('Fuel Monitoring Name') }}</th>
+                  <th>{{ __('Power') }}</th>
+                  <th>{{ __('From') }}</th>
+                  <th>{{ __('To') }}</th>
+                </tr>
+              </thead>
+
+              <tfoot>
+                <tr>
+                  <th>{{ __('Fuel Monitoring Name') }}</th>
+                  <th>{{ __('Power') }}</th>
+                  <th>{{ __('From') }}</th>
+                  <th>{{ __('To') }}</th>
+                </tr>
+              </tfoot>
+                
+              <tbody>
+             <!-- Write Something -->
+                  @foreach($power_logs as $pl)
+                    <tr align="center">
+                        <td> {{$fms->name}} </td>
+                        <td> {{$pl->Power}} </td>
+                        <td> {{$pl->created_at}}</td>
+                        <td> {{$pl->updated_at}}</td>
+                    </tr>
+                  @endforeach
+              </tbody>
+            </table>
+          </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Line Chart -->
+      <div class="panel-header panel-header-lg">
+        <canvas id="powerChart"></canvas>
+      </div>
+      
+  <!-- end chart -->
+    </div>
+
+    <div class="row" id="temperature_log" style="display:none">
+      
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="places-buttons">
+              <div class="row">
+                <div class="col-md-6 ml-auto mr-auto text-center">
+                  <h4 class="card-title">
+                    Temperature Log
+                    </h4>
+                </div>
+              </div>
+              <div class="card-body">
+            <div class="toolbar">
+              <!--        Here you can write extra buttons/actions for the toolbar              -->
+            </div>
+            <table id="datatable1" class="table table-striped table-bordered" cellspacing="0" width="100%">
+              <thead>
+                <tr>
+                  <th>{{ __('Fuel Monitoring Name') }}</th>
+                  <th>{{ __('Temperature') }}</th>
+                  <th>{{ __('From') }}</th>
+                  <th>{{ __('To') }}</th>
+                </tr>
+              </thead>
+
+              <tfoot>
+                <tr>
+                  <th>{{ __('Fuel Monitoring Name') }}</th>
+                  <th>{{ __('Temperature') }}</th>
+                  <th>{{ __('From') }}</th>
+                  <th>{{ __('To') }}</th>
+                </tr>
+              </tfoot>
+                
+              <tbody>
+             <!-- Write Something -->
+                  @foreach($temperature_logs as $tl)
+                    <tr align="center">
+                        <td> {{$fms->name}} </td>
+                        <td> {{$tl->temperature}} </td>
+                        <td> {{$tl->created_at}}</td>
+                        <td> {{$tl->updated_at}}</td>
+                    </tr>
+                  @endforeach
+              </tbody>
+            </table>
+          </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Line Chart -->
+      <div class="panel-header panel-header-lg">
+        <canvas id="temperatureChart"></canvas>
+      </div>
+      
+  <!-- end chart -->
+    </div>
+
+    <div class="row" id="generator_log" style="display:none">
+      
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="places-buttons">
+              <div class="row">
+                <div class="col-md-6 ml-auto mr-auto text-center">
+                  <h4 class="card-title">
+                    Genrater Log
+                    </h4>
+                </div>
+              </div>
+              <div class="card-body">
+            <div class="toolbar">
+              <!--        Here you can write extra buttons/actions for the toolbar              -->
+            </div>
+            <table id="datatable1" class="table table-striped table-bordered" cellspacing="0" width="100%">
+              <thead>
+                <tr>
+                  <th>{{ __('Fuel Monitoring Name') }}</th>
+                  <th>{{ __('Genrater Status') }}</th>
+                  <th>{{ __('From') }}</th>
+                  <th>{{ __('To') }}</th>
+                </tr>
+              </thead>
+
+              <tfoot>
+                <tr>
+                  <th>{{ __('Fuel Monitoring Name') }}</th>
+                  <th>{{ __('Genrater Status') }}</th>
+                  <th>{{ __('From') }}</th>
+                  <th>{{ __('To') }}</th>
+                </tr>
+              </tfoot>
+                
+              <tbody>
+             <!-- Write Something -->
+                  @foreach($gen_status_logs as $gl)
+                    <tr align="center">
+                        <td> {{$fms->name}} </td>
+                        @if($gl->gen_status == 1)
+                            <td> Generator On </td>
+                        @else
+                            <td> Generator Off</td>
+                        @endif
+                        <td> {{$gl->created_at}}</td>
+                        <td> {{$gl->updated_at}}</td>
+                    </tr>
+                  @endforeach
+              </tbody>
+            </table>
+          </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Line Chart -->
+      <div class="panel-header panel-header-lg">
+        <canvas id="genChart"></canvas>
+      </div>
+      
+  <!-- end chart -->
+    </div>
+
     
     <script>
         // Enable pusher logging - don't include this in production
@@ -378,12 +817,13 @@
   <script>
     $(document).ready(function() {
       // Javascript method's body can be found in assets/js/demos.js
-      demo.initDashboardPageCharts({!! json_encode($avgFillLevel) !!}, {!! json_encode($dateLabels) !!} , {!! json_encode($statusCount) !!} );
+      demo.initDashboardPageCharts({!! json_encode($avgFillLevel) !!}, {!! json_encode($dateLabels) !!} , {!! json_encode($statusCount) !!},{!! json_encode($avgVoltage) !!}, {!! json_encode($avgCurrent) !!}, {!! json_encode($avgPower) !!},{!! json_encode($avgTemperature) !!},{!! json_encode($avgGenStatus) !!}, );
 
     });
 
     function myFunction() {
   var x = document.getElementById("door_log");
+  // demo.initDashboardPageCharts( {!! json_encode($dateLabels) !!} , {!! json_encode($statusCount) !!} );
   if (x.style.display === "none") {
     x.style.display = "block";
   } else {
@@ -393,6 +833,7 @@
 
 function myFun() {
   var x = document.getElementById("fuel_log");
+  // demo.initDashboardPageCharts({!! json_encode($avgFillLevel) !!}, {!! json_encode($dateLabels) !!});
   if (x.style.display === "none") {
     x.style.display = "block";
   } else {
@@ -400,5 +841,54 @@ function myFun() {
   }
 }
 
+function myFun1() {
+  var x = document.getElementById("voltage_log");
+  // demo.initDashboardPageCharts({!! json_encode($avgVoltage) !!}, {!! json_encode($dateLabels) !!});
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+
+function myFun2() {
+  var x = document.getElementById("current_log");
+  //demo.initDashboardPageCharts({!! json_encode($avgCurrent) !!}, {!! json_encode($dateLabels) !!});
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+
+function myFun3() {
+  var x = document.getElementById("power_log");
+  //demo.initDashboardPageCharts({!! json_encode($avgPower) !!}, {!! json_encode($dateLabels) !!});
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+
+function myFun4() {
+  var x = document.getElementById("temperature_log");
+  //demo.initDashboardPageCharts({!! json_encode($avgTemperature) !!}, {!! json_encode($dateLabels) !!});
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+
+function myFun5() {
+  var x = document.getElementById("generator_log");
+  //demo.initDashboardPageCharts({!! json_encode($avgGenStatus) !!}, {!! json_encode($dateLabels) !!});
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
     </script>
 @endpush

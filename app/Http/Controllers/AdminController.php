@@ -14,6 +14,14 @@ class AdminController extends Controller
     }
 
     public function index(){
-        return view('users.admin');
+        // return view('users.admin');
+        foreach($this->guard()->user()->role as $role) {
+        if($role->name == 'admin'){
+            return redirect('log_a');
+        }
+        else {
+            return view('users.log');
+        }
+    }
     }
 }

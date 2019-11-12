@@ -18,7 +18,7 @@
                                 <h3 class="mb-0">{{ __('Add Fuel Monitoring Sensor') }}</h3>
                             </div>
                             <div class="col-4 text-right">
-                                <a href="{{ route('log') }}" class="btn btn-primary btn-round">{{ __('Back') }}</a>
+                                <a href="{{ route('log_a') }}" class="btn btn-primary btn-round">{{ __('Back') }}</a>
                             </div>
                         </div>
                     </div>

@@ -30,12 +30,12 @@
   <div class="row">
       <div class="col-md-12">
         <div class="card">
-          <div class="card-header">
-          <a class="btn btn-primary btn-round text-white pull-right" href="{{ route('sensor') }}">{{ __('Add New Fuel Monitoring') }}</a>
-            <h4 class="card-title">Fuel Monitoring</h4>
-            <div class="col-12 mt-2">
-                                        </div>
-          </div>
+            <div class="card-header">
+              <a class="btn btn-primary btn-round text-white pull-right" href="{{ route('sensor_a') }}">{{ __('Add New Fuel Monitoring') }}</a>
+                <h4 class="card-title">Fuel Monitoring</h4>
+                  <div class="col-12 mt-2">
+                  </div>
+            </div>
           <div class="card-body">
             <div class="toolbar">
               <!--        Here you can write extra buttons/actions for the toolbar              -->
@@ -84,10 +84,10 @@
                   <td>{{$f->current}}</td>
                   <td>{{$f->power}}</td>
                   <td>{{$f->temperature}}</td>
-                  @if($f->genStatus == 1)
+                  @if($f->gen_status == 1)
                             <td> Generator On </td>
                        @else
-                            <td>Generator Off</td>
+                            <td> Generator Off </td>
                         @endif
                   <td class="MuiTableCell-root SmartBoxesTable-tableCell-1257 MuiTableCell-body">
                     <!-- <a href="{{ route('fms_log') }}/{{$fms['fms_id']}}" class="btn btn-primary btn-round">See Logs</a> -->

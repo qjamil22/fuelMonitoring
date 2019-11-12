@@ -19,7 +19,7 @@
                             </div>
 
                             <div class="col-4 text-right">
-                                <a href="{{ route('log') }}" class="btn btn-primary btn-round">{{ __('Back') }}</a>
+                                <a href="{{ route('log_a') }}" class="btn btn-primary btn-round">{{ __('Back') }}</a>
                             </div>
 
     
@@ -134,7 +134,7 @@
         </div>
         <!--  end card  -->
 
-        <div class="col-md-1">
+        <div class="col-md-1.71">
         
             <div class="row">
                 <div class="col-md-12" align="center">
@@ -156,7 +156,7 @@
         <!--  end card  -->
       </div>
 
-      <div class="col-md-1">
+      <div class="col-md-2">
         
             <div class="row">
                 <div class="col-md-12" align="center">
@@ -178,7 +178,7 @@
         <!--  end card  -->
       </div>
 
-      <div class="col-md-2">
+      <div class="col-md-1.71">
         
             <div class="row">
                 <div class="col-md-12" align="center">
@@ -222,7 +222,7 @@
         <!--  end card  -->
       </div>
 
-      <div class="col-md-2">
+      <div class="col-md-1.71">
         
             <div class="row">
                 <div class="col-md-12" align="center">
@@ -501,12 +501,12 @@
                 
               <tbody>
              <!-- Write Something -->
-                  @foreach($fill_level_logs as $fl)
+                  @foreach($voltage_logs as $vl)
                     <tr align="center">
                         <td> {{$fms->name}} </td>
-                        <td> {{$fms->voltage}} </td>
-                        <td> {{$fl->created_at}}</td>
-                        <td> {{$fl->updated_at}}</td>
+                        <td> {{$vl->voltage}} </td>
+                        <td> {{$vl->created_at}}</td>
+                        <td> {{$vl->updated_at}}</td>
                     </tr>
                   @endforeach
               </tbody>
@@ -562,12 +562,12 @@
                 
               <tbody>
              <!-- Write Something -->
-                  @foreach($fill_level_logs as $fl)
+                  @foreach($current_logs as $cl)
                     <tr align="center">
                         <td> {{$fms->name}} </td>
-                        <td> {{$fms->current}} </td>
-                        <td> {{$fl->created_at}}</td>
-                        <td> {{$fl->updated_at}}</td>
+                        <td> {{$cl->current}} </td>
+                        <td> {{$cl->created_at}}</td>
+                        <td> {{$cl->updated_at}}</td>
                     </tr>
                   @endforeach
               </tbody>
@@ -623,12 +623,12 @@
                 
               <tbody>
              <!-- Write Something -->
-                  @foreach($fill_level_logs as $fl)
+                  @foreach($power_logs as $pl)
                     <tr align="center">
                         <td> {{$fms->name}} </td>
-                        <td> {{$fms->Power}} </td>
-                        <td> {{$fl->created_at}}</td>
-                        <td> {{$fl->updated_at}}</td>
+                        <td> {{$pl->Power}} </td>
+                        <td> {{$pl->created_at}}</td>
+                        <td> {{$pl->updated_at}}</td>
                     </tr>
                   @endforeach
               </tbody>
@@ -684,12 +684,12 @@
                 
               <tbody>
              <!-- Write Something -->
-                  @foreach($fill_level_logs as $fl)
+                  @foreach($temperature_logs as $tl)
                     <tr align="center">
                         <td> {{$fms->name}} </td>
-                        <td> {{$fms->temperature}} </td>
-                        <td> {{$fl->created_at}}</td>
-                        <td> {{$fl->updated_at}}</td>
+                        <td> {{$tl->temperature}} </td>
+                        <td> {{$tl->created_at}}</td>
+                        <td> {{$tl->updated_at}}</td>
                     </tr>
                   @endforeach
               </tbody>
@@ -716,7 +716,7 @@
               <div class="row">
                 <div class="col-md-6 ml-auto mr-auto text-center">
                   <h4 class="card-title">
-                    Genrater Log
+                    Generater Log
                     </h4>
                 </div>
               </div>
@@ -745,12 +745,16 @@
                 
               <tbody>
              <!-- Write Something -->
-                  @foreach($fill_level_logs as $fl)
+                  @foreach($gen_status_logs as $gl)
                     <tr align="center">
                         <td> {{$fms->name}} </td>
-                        <td> {{$fms->genStatus}} </td>
-                        <td> {{$fl->created_at}}</td>
-                        <td> {{$fl->updated_at}}</td>
+                        @if($gl->gen_status == 1)
+                            <td> Generator On </td>
+                        @else
+                            <td> Generator Off</td>
+                        @endif
+                        <td> {{$gl->created_at}}</td>
+                        <td> {{$gl->updated_at}}</td>
                     </tr>
                   @endforeach
               </tbody>
@@ -814,7 +818,8 @@
   <script>
     $(document).ready(function() {
       // Javascript method's body can be found in assets/js/demos.js
-      demo.initDashboardPageCharts({!! json_encode($avgFillLevel) !!},  {!! json_encode($dateLabels) !!} , {!! json_encode($statusCount) !!} );
+      demo.initDashboardPageCharts({!! json_encode($avgFillLevel) !!}, {!! json_encode($dateLabels) !!} , {!! json_encode($statusCount) !!},{!! json_encode($avgVoltage) !!}, {!! json_encode($avgCurrent) !!}, {!! json_encode($avgPower) !!},{!! json_encode($avgTemperature) !!},{!! json_encode($avgGenStatus) !!}, );
+
 
     });
 
@@ -830,7 +835,7 @@
 
 function myFun() {
   var x = document.getElementById("fuel_log");
-  demo.initDashboardPageCharts({!! json_encode($avgFillLevel) !!}, {!! json_encode($dateLabels) !!});
+  //demo.initDashboardPageCharts({!! json_encode($avgFillLevel) !!}, {!! json_encode($dateLabels) !!});
   if (x.style.display === "none") {
     x.style.display = "block";
   } else {
@@ -840,7 +845,7 @@ function myFun() {
 
 function myFun1() {
   var x = document.getElementById("voltage_log");
-  demo.initDashboardPageCharts({!! json_encode($avgVoltage) !!}, {!! json_encode($dateLabels) !!});
+  //demo.initDashboardPageCharts({!! json_encode($avgVoltage) !!}, {!! json_encode($dateLabels) !!});
   if (x.style.display === "none") {
     x.style.display = "block";
   } else {
@@ -850,7 +855,7 @@ function myFun1() {
 
 function myFun2() {
   var x = document.getElementById("current_log");
-  demo.initDashboardPageCharts({!! json_encode($avgCurrent) !!}, {!! json_encode($dateLabels) !!});
+ // demo.initDashboardPageCharts({!! json_encode($avgCurrent) !!}, {!! json_encode($dateLabels) !!});
   if (x.style.display === "none") {
     x.style.display = "block";
   } else {
@@ -860,7 +865,7 @@ function myFun2() {
 
 function myFun3() {
   var x = document.getElementById("power_log");
-  demo.initDashboardPageCharts({!! json_encode($avgPower) !!}, {!! json_encode($dateLabels) !!});
+ // demo.initDashboardPageCharts({!! json_encode($avgPower) !!}, {!! json_encode($dateLabels) !!});
   if (x.style.display === "none") {
     x.style.display = "block";
   } else {
@@ -870,7 +875,7 @@ function myFun3() {
 
 function myFun4() {
   var x = document.getElementById("temperature_log");
-  demo.initDashboardPageCharts({!! json_encode($avgTemperature) !!}, {!! json_encode($dateLabels) !!});
+ // demo.initDashboardPageCharts({!! json_encode($avgTemperature) !!}, {!! json_encode($dateLabels) !!});
   if (x.style.display === "none") {
     x.style.display = "block";
   } else {
@@ -880,7 +885,7 @@ function myFun4() {
 
 function myFun5() {
   var x = document.getElementById("generator_log");
-  demo.initDashboardPageCharts({!! json_encode($avgGenStatus) !!}, {!! json_encode($dateLabels) !!});
+//  demo.initDashboardPageCharts({!! json_encode($avgGenStatus) !!}, {!! json_encode($dateLabels) !!});
   if (x.style.display === "none") {
     x.style.display = "block";
   } else {

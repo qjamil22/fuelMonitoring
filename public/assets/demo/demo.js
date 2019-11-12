@@ -125,7 +125,7 @@ demo = {
     initDashboardPageCharts: function(avgFillLevel, dateLabels, statusCount, avgVoltage, avgCurrent, avgPower, avgTemperature, avgGenStatus) {
 
         chartColor = "#FFFFFF";
-
+   
         // General configuration for the charts with Line gradientStroke
         gradientChartOptionsConfiguration = {
             
@@ -604,9 +604,9 @@ demo = {
                 labels: dateLabels,
                 datasets: [{
                     label: "Temperature Average",
-                    borderColor: chartColor,
+                    borderColor: "#f96332",
                     pointBorderColor: chartColor,
-                    pointBackgroundColor: "#1e3d60",
+                    pointBackgroundColor: "#f96332",
                     pointHoverBackgroundColor: "#1e3d60",
                     pointHoverBorderColor: chartColor,
                     pointBorderWidth: 1,
@@ -617,6 +617,70 @@ demo = {
                     backgroundColor: gradientFill,
                     borderWidth: 2,
                     data: avgTemperature
+                },
+                {
+                    label: "FillLevel Average",
+                    borderColor: "green",
+                    pointBorderColor: chartColor,
+                    pointBackgroundColor: "green",
+                    pointHoverBackgroundColor: "#1e3d60",
+                    pointHoverBorderColor: chartColor,
+                    pointBorderWidth: 1,
+                    pointHoverRadius: 7,
+                    pointHoverBorderWidth: 2,
+                    pointRadius: 5,
+                    fill: true,
+                    backgroundColor: gradientFill,
+                    borderWidth: 2,
+                    data: avgFillLevel
+                },
+                {
+                    label: "Power Average",
+                    borderColor: "white",
+                    pointBorderColor: chartColor,
+                    pointBackgroundColor: "white",
+                    pointHoverBackgroundColor: "#1e3d60",
+                    pointHoverBorderColor: chartColor,
+                    pointBorderWidth: 1,
+                    pointHoverRadius: 7,
+                    pointHoverBorderWidth: 2,
+                    pointRadius: 5,
+                    fill: true,
+                    backgroundColor: gradientFill,
+                    borderWidth: 2,
+                    data: avgPower
+                },
+                {
+                    label: "Voltage Average",
+                    borderColor: "black",
+                    pointBorderColor: chartColor,
+                    pointBackgroundColor: "black",
+                    pointHoverBackgroundColor: "#1e3d60",
+                    pointHoverBorderColor: chartColor,
+                    pointBorderWidth: 1,
+                    pointHoverRadius: 7,
+                    pointHoverBorderWidth: 2,
+                    pointRadius: 5,
+                    fill: true,
+                    backgroundColor: gradientFill,
+                    borderWidth: 2,
+                    data: avgVoltage
+                },
+                {
+                    label: "Current Average",
+                    borderColor: "yellow",
+                    pointBorderColor: chartColor,
+                    pointBackgroundColor: "yellow",
+                    pointHoverBackgroundColor: "#1e3d60",
+                    pointHoverBorderColor: chartColor,
+                    pointBorderWidth: 1,
+                    pointHoverRadius: 7,
+                    pointHoverBorderWidth: 2,
+                    pointRadius: 5,
+                    fill: true,
+                    backgroundColor: gradientFill,
+                    borderWidth: 2,
+                    data: avgCurrent
                 }]
             },
             options: {
@@ -689,11 +753,11 @@ demo = {
         gradientFill.addColorStop(1, "rgba(255, 255, 255, 0.24)");
 
         var myChart = new Chart(ctx, {
-            type: 'line',
+            type: 'bar',
             data: {
                 labels: dateLabels,
                 datasets: [{
-                    label: "Generator Average",
+                    label: "Generator Status",
                     borderColor: chartColor,
                     pointBorderColor: chartColor,
                     pointBackgroundColor: "#1e3d60",

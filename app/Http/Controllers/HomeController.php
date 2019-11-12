@@ -274,6 +274,7 @@ class HomeController extends Controller
 
     public function fms_log_a(Request $request)
     {
+        // dd($request);
         $user = Auth::user();
         $fms = f::where('id',$request->id)->first();
         $fl = fl::where('fms_id',$request->id)->get();
@@ -283,7 +284,9 @@ class HomeController extends Controller
         $pl = pl::where('fms_id',$request->id)->get();
         $tl = tl::where('fms_id',$request->id)->get();
         $gl = gl::where('fms_id',$request->id)->get();
-
+        
+        //FillLevel Logs
+        
         $avgArray = [];
         $j = 0;
         $sum = 0;
@@ -294,7 +297,7 @@ class HomeController extends Controller
             $date = DB::table('fill_level_logs')->where('fms_id', $request->id)->whereDate('created_at', Carbon::createFromDate()->format('d/m/y'))->get();
             if($temp == null) {
                 $avgArray[$j] = 0;  
-
+                
             }
             else {
                 $avgArray[$j] = $temp;  
@@ -302,6 +305,7 @@ class HomeController extends Controller
 
             $j++;
         }
+        // dd($avgArray);
         
         //Voltage_logs
 
@@ -315,15 +319,16 @@ class HomeController extends Controller
             $date = DB::table('voltage_logs')->where('fms_id', $request->id)->whereDate('created_at', Carbon::createFromDate()->format('d/m/y'))->get();
             if($temp == null) {
                 $avgArray1[$j] = 0;  
-
+                
             }
             else {
-                $avgArray1[$j] = $temp;  
+                $avgArray1[$j] = $temp; 
+                
             }
 
             $j++;
         }
-
+// dd($avgArray1);
         //Current_logs
 
         $avgArray2 = [];
@@ -340,8 +345,9 @@ class HomeController extends Controller
             }
             else {
                 $avgArray2[$j] = $temp;  
+                 
             }
-
+            
             $j++;
         }
 
@@ -407,6 +413,7 @@ class HomeController extends Controller
 
             $j++;
         }
+        // dd($avgArray5);
 
         // Door_Status_log
 
@@ -433,6 +440,11 @@ class HomeController extends Controller
         return view('users.fms_log_a')
                 ->with('fill_level_logs',$fl)
                 ->with('status_logs',$sl)
+                ->with('voltage_logs', $vl)
+                ->with('current_logs', $cl)
+                ->with('power_logs', $pl)
+                ->with('temperature_logs', $tl)
+                ->with('gen_status_logs', $gl)
                 ->with('fms',$fms)
                 ->with('avgFillLevel', $avgArray)
                 ->with('avgVoltage', $avgArray1)

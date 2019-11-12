@@ -94,7 +94,7 @@ class fuelMonitoringController extends Controller
      */
     public function updateFillevelStatic(Request $request)
     {
-dd($request);
+// dd($request);
         $fms = fms::where('id',$request->id)->first();
         $user = User::where('id', $fms->user_id)->first(); 
 
@@ -119,7 +119,7 @@ dd($request);
         $fms->current = $request->current;
         $fms->power = $request->power;
         $fms->temperature = $request->temperature;
-        $fms->genStatus = $request->genStatus;
+        $fms->genStatus = $request->gen_status;
         $fms->timestamps = false;
         $fms->save();
 
@@ -142,6 +142,106 @@ dd($request);
             $log->save();
 
             $fms->fillLevel_log_id = $log->id;
+        }
+
+        if($fms->voltage_log_id == null){
+            $log = new voltage_logs;
+            $log->voltage = $request->voltage;
+            $log->fms_id = $fms->id;
+            $log->save();
+
+            $fms->voltage_log_id = $log->id;
+        }
+        else {
+            $prevLog = voltage_logs::where('id',$fms->voltage_log_id)->first();
+            $prevLog->touch();
+
+            $log = new voltage_logs;
+            $log->voltage = $request->voltage;
+            $log->fms_id = $fms->id;
+            $log->save();
+
+            $fms->voltage_log_id = $log->id;
+        }
+
+        if($fms->current_log_id == null){
+            $log = new current_logs;
+            $log->current = $request->current;
+            $log->fms_id = $fms->id;
+            $log->save();
+
+            $fms->current_log_id = $log->id;
+        }
+        else {
+            $prevLog = current_logs::where('id',$fms->current_log_id)->first();
+            $prevLog->touch();
+
+            $log = new current_logs;
+            $log->current = $request->current;
+            $log->fms_id = $fms->id;
+            $log->save();
+
+            $fms->current_log_id = $log->id;
+        }
+
+        if($fms->power_log_id == null){
+            $log = new power_logs;
+            $log->power = $request->power;
+            $log->fms_id = $fms->id;
+            $log->save();
+
+            $fms->power_log_id = $log->id;
+        }
+        else {
+            $prevLog = power_logs::where('id',$fms->power_log_id)->first();
+            $prevLog->touch();
+
+            $log = new power_logs;
+            $log->power = $request->power;
+            $log->fms_id = $fms->id;
+            $log->save();
+
+            $fms->power_log_id = $log->id;
+        }
+
+        if($fms->temperature_log_id == null){
+            $log = new temperature_logs;
+            $log->temperature = $request->temperature;
+            $log->fms_id = $fms->id;
+            $log->save();
+
+            $fms->temperature_log_id = $log->id;
+        }
+        else {
+            $prevLog = temperature_logs::where('id',$fms->temperature_log_id)->first();
+            $prevLog->touch();
+
+            $log = new temperature_logs;
+            $log->temperature = $request->temperature;
+            $log->fms_id = $fms->id;
+            $log->save();
+
+            $fms->temperature_log_id = $log->id;
+        }
+
+        if($fms->gen_status_log_id == null){
+            $log = new genStatus_logs;
+            $log->gen_status = $request->gen_status;
+            $log->fms_id = $fms->id;
+            $log->save();
+
+            $fms->gen_status_log_id = $log->id;
+        }
+        else {
+            $prevLog = genStatus_logs::where('id',$fms->gen_stauts_log_id)->first();
+            $prevLog->touch();
+
+            $log = new genStatus_logs;
+            $log->gen_status = $request->gen_status;
+            $log->fms_id = $fms->id;
+            $log->save();
+
+            $fms->gen_status_log_id = $log->id;
         }
 
         $json = [
