@@ -4,7 +4,7 @@
 </form>
 @include('layouts.navbars.sidebar')
 <div class="main-panel">
-    @include('layouts.navbars.navs.auth')
+    @include('layouts.navbars.navs.auth_a')
     @yield('content')
     @include('layouts.footer')
 </div>

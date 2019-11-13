@@ -89,6 +89,34 @@
           <!-- end content-->
         </div>
 
+        <div class="panel-header panel-header-lg">
+        <canvas id="temperatureChart"></canvas>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+        <div class="card card-chart">
+            <div class="card-header">
+              <h4 class="card-title">Generator</h4>
+            </div>
+          <div class="panel-header panel-header-lg">
+            <canvas id="genChart"></canvas>
+          </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+        <div class="card card-chart">
+            <div class="card-header">
+              <h4 class="card-title">Door Open</h4>
+            </div>
+        <div class="panel-header panel-header-lg">
+        <canvas id="doorChart"></canvas>
+      </div>
+      </div>
+        </div>
+      </div>
+
         <div class="row">
       <div class="col-md-2">
         
@@ -311,20 +339,15 @@
     <div class="content">
       <div class="row">
         <div class="col-lg-12 col-md-12">
-          <div class="card card-chart">
-            <div class="card-header">
-              <h4 class="card-title">Door Open</h4>
-            </div>
+          
             <div class="card-body">
-              <div class="chart-area">
+              <!-- <div class="chart-area">
                 <canvas id="barChartSimpleGradientsNumbers"></canvas>
-              </div>
+              </div> -->
+              <div class="panel-header panel-header-lg" style="display:none">
+        <canvas id="doorChart"></canvas>
             </div>
-            <div class="card-footer">
-              <div class="stats">
-                <i class="now-ui-icons ui-2_time-alarm"></i> Last 7 days
-              </div>
-            </div>
+            
           </div>
         </div>
 
@@ -517,7 +540,7 @@
         </div>
       </div>
       <!-- Line Chart -->
-      <div class="panel-header panel-header-lg">
+      <div class="panel-header panel-header-lg" style="display:none">
         <canvas id="voltageChart"></canvas>
       </div>
       
@@ -578,7 +601,7 @@
         </div>
       </div>
       <!-- Line Chart -->
-      <div class="panel-header panel-header-lg">
+      <div class="panel-header panel-header-lg" style="display:none">
         <canvas id="currentChart"></canvas>
       </div>
       
@@ -639,7 +662,7 @@
         </div>
       </div>
       <!-- Line Chart -->
-      <div class="panel-header panel-header-lg">
+      <div class="panel-header panel-header-lg" style="display:none">
         <canvas id="powerChart"></canvas>
       </div>
       
@@ -700,7 +723,7 @@
         </div>
       </div>
       <!-- Line Chart -->
-      <div class="panel-header panel-header-lg">
+      <div class="panel-header panel-header-lg" style="display:none">
         <canvas id="temperatureChart"></canvas>
       </div>
       
@@ -765,7 +788,7 @@
         </div>
       </div>
       <!-- Line Chart -->
-      <div class="panel-header panel-header-lg">
+      <div class="panel-header panel-header-lg" style="display:none">
         <canvas id="genChart"></canvas>
       </div>
       

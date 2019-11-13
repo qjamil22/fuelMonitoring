@@ -169,22 +169,22 @@ class HomeController extends Controller
 
         $avgArray5 = [];
         $j = 0;
-        $sum = 0;
 
         for($i=6; $i>=0; $i--) {
 
-            $temp = DB::table('gen_status_logs')->where('fms_id', $request->id)->whereDate('created_at', Carbon::now()->subDays($i))->avg('gen_status');
-            $date = DB::table('gen_status_logs')->where('fms_id', $request->id)->whereDate('created_at', Carbon::createFromDate()->format('d/m/y'))->get();
-            if($temp == null) {
-                $avgArray5[$j] = 0;  
-
-            }
-            else {
-                $avgArray5[$j] = $temp;  
-            }
+            $temp = DB::table('gen_status_logs')->where('fms_id', $request->id)->whereDate('created_at', Carbon::now()->subDays($i))->where('gen_status',1)->count();
+            
+            $avgArray5[$j] = $temp;
 
             $j++;
         }
+        // $dateArray = [];
+        // $k = 0;
+        // for($m=6; $m>=0; $m--) {
+        //     $temp1 = Carbon::now()->subDays($m)->format('y/m/d');
+        //     $dateArray[$k] = $temp1;
+        //     $k++;
+        // }
 
         //Door_status_logs
 
